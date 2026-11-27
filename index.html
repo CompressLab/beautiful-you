@@ -224,18 +224,99 @@ h1{
 .surprise-image:hover{
     transform:scale(1.03);
 }
-#surpriseMessage{
-    margin-top:20px;
-    color:#333333;
-    background:rgba(255,255,255,0.85);
+.popup-overlay{
+
+    position:fixed;
+    inset:0;
+
+    background:rgba(0,0,0,0.65);
+
+    display:flex;
+    justify-content:center;
+    align-items:center;
+
+    padding:20px;
+
+    opacity:0;
+    visibility:hidden;
+
+    transition:.35s ease;
+
+    z-index:9999;
+}
+
+.popup-overlay.show{
+    opacity:1;
+    visibility:visible;
+}
+
+.popup-content{
+
+    background:white;
+
+    width:100%;
+    max-width:500px;
+
+    border-radius:24px;
+
     padding:25px;
-    border-radius:20px;
-    max-height:0;
-    overflow:hidden;
-    transition:max-height .8s ease;
-    font-size:1.05rem;
-    line-height:1.9;
-    box-shadow:0 10px 30px rgba(0,0,0,.08);
+
+    text-align:center;
+
+    position:relative;
+
+    color:#333;
+
+    animation:popupScale .35s ease;
+}
+
+@keyframes popupScale{
+
+    from{
+        transform:scale(.85);
+        opacity:0;
+    }
+
+    to{
+        transform:scale(1);
+        opacity:1;
+    }
+}
+
+.close-btn{
+
+    position:absolute;
+
+    top:15px;
+    right:15px;
+
+    width:40px;
+    height:40px;
+
+    border:none;
+
+    border-radius:50%;
+
+    background:#f2f2f2;
+
+    cursor:pointer;
+
+    font-size:1.2rem;
+
+    transition:.3s;
+}
+
+.close-btn:hover{
+
+    background:#ff4d6d;
+    color:white;
+}
+
+.popup-content h2{
+
+    margin-bottom:15px;
+
+    color:#ff4d6d;
 }
 
 .special-btn{
@@ -384,42 +465,55 @@ h1{
 
         </div>
 
-        <div class="surprise-section">
+      <div class="surprise-section">
 
-            <button class="special-btn" id="surpriseBtn">
-                🎁 Open One Last Surprise
-            </button>
-
-           <div id="surpriseMessage">
-
-    <img
-        src="images/image.jpg"
-        alt="Beautiful Eyes"
-        class="surprise-image"
-    >
-
-    <p>
-        If there is one thing more beautiful than your eyes,
-        it's the way you see the world around you and the kind of person you are.
-    </p>
-
-    <br>
-
-    <p>
-        Your simplicity is refreshing.
-        Your sweetness is unforgettable.
-        Your beauty is effortless.
-    </p>
-
-    <br>
-
-    <p>
-        Never change. ❤️
-    </p>
+    <button class="special-btn" id="surpriseBtn">
+        🎁 Open One Last Surprise
+    </button>
 
 </div>
 
-        </div>
+<!-- Popup -->
+
+<div id="popupOverlay" class="popup-overlay">
+
+    <div class="popup-content">
+
+        <button class="close-btn" id="closePopup">
+            ✕
+        </button>
+
+        <img
+            src="images/image.jpg"
+            alt="Beautiful Eyes"
+            class="surprise-image"
+        >
+
+        <h2>✨ Just One More Thing... ✨</h2>
+
+        <p>
+            If there is one thing more beautiful than your eyes,
+            it's the kindness, simplicity, and warmth they reflect.
+        </p>
+
+        <br>
+
+      <p>
+    Some people are beautiful because of how they look.
+    Some people are beautiful because of who they are.
+    You're both. ❤️
+</p>
+
+        <br>
+
+        <p>
+            Never change, Asra Teacher. ❤️
+        </p>
+
+    </div>
+
+</div>
+
 
         <div class="footer-quote">
 
@@ -471,19 +565,30 @@ document.querySelectorAll('.btn').forEach(button=>{
 
 /* Surprise message */
 
+const popup =
+document.getElementById('popupOverlay');
+
 document
 .getElementById('surpriseBtn')
 .addEventListener('click',()=>{
 
-    const msg=document.getElementById('surpriseMessage');
+    popup.classList.add('show');
+});
 
-    if(msg.style.maxHeight){
+document
+.getElementById('closePopup')
+.addEventListener('click',()=>{
 
-        msg.style.maxHeight=null;
+    popup.classList.remove('show');
+});
 
-    }else{
+/* Close if user taps outside popup */
 
-        msg.style.maxHeight=msg.scrollHeight + 'px';
+popup.addEventListener('click',(e)=>{
+
+    if(e.target === popup){
+
+        popup.classList.remove('show');
     }
 });
 
