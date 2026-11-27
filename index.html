@@ -207,20 +207,35 @@ h1{
 .surprise-section{
     margin-top:40px;
 }
+.surprise-image{
+    width:100%;
+    max-width:320px;
+    aspect-ratio:1/1;
+    object-fit:cover;
+    border-radius:24px;
+    margin:0 auto 25px;
+    display:block;
+    box-shadow:
+        0 20px 40px rgba(0,0,0,.18),
+        0 0 30px rgba(255,255,255,.4);
+    transition:.4s;
+}
 
+.surprise-image:hover{
+    transform:scale(1.03);
+}
 #surpriseMessage{
-
-    margin-top:15px;
-
-    color:white;
-
+    margin-top:20px;
+    color:#333333;
+    background:rgba(255,255,255,0.85);
+    padding:25px;
+    border-radius:20px;
     max-height:0;
     overflow:hidden;
-
     transition:max-height .8s ease;
-
     font-size:1.05rem;
     line-height:1.9;
+    box-shadow:0 10px 30px rgba(0,0,0,.08);
 }
 
 .special-btn{
@@ -375,28 +390,34 @@ h1{
                 🎁 Open One Last Surprise
             </button>
 
-            <div id="surpriseMessage">
+           <div id="surpriseMessage">
 
-                <p>
-                    If there is one thing more beautiful than your eyes,
-                    it's the was you see the world around you and the kind of person you are.
-                </p>
+    <img
+        src="images/image.jpg"
+        alt="Beautiful Eyes"
+        class="surprise-image"
+    >
 
-                <br>
+    <p>
+        If there is one thing more beautiful than your eyes,
+        it's the way you see the world around you and the kind of person you are.
+    </p>
 
-                <p>
-                    Your simplicity is refreshing.
-                    Your sweetness is unforgettable.
-                    Your beauty is effortless.
-                </p>
+    <br>
 
-                <br>
+    <p>
+        Your simplicity is refreshing.
+        Your sweetness is unforgettable.
+        Your beauty is effortless.
+    </p>
 
-                <p>
-                    Never change. ❤️
-                </p>
+    <br>
 
-            </div>
+    <p>
+        Never change. ❤️
+    </p>
+
+</div>
 
         </div>
 
